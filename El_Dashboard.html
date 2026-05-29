@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>⚡ DARK JR TOUR CONTROL ⚡</title>
+
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+
+        body{
+            background: linear-gradient(
+                135deg,
+                #07111f,
+                #0b1f33,
+                #111827
+            );
+        }
+
+        .glass{
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .neon-purple{
+            box-shadow: 0 0 20px #9333ea;
+        }
+
+        .botonActivo{
+            background: #22d3ee !important;
+            color: black !important;
+            transform: scale(1.04);
+        }
+
+    </style>
+</head>
+
+<body class="text-white font-sans min-h-screen">
+
+    <!-- HEADER -->
+    <header class="text-center py-10">
+
+        <h1 class="text-5xl md:text-6xl font-extrabold text-cyan-400">
+            ⚡ DARK TOUR CONTROL ⚡
+        </h1>
+
+        <p class="text-gray-300 mt-4 text-lg">
+            Dashboard Interactivo del World Tour
+        </p>
+
+    </header>
+
+
+    <main class="max-w-6xl mx-auto px-6 space-y-14">
+
+        <!-- ETAPA 1 -->
+
+        <section class="glass rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-fuchsia-400 mb-8">
+                🎟️ Venta de Tickets VIP
+            </h2>
+            <form id="formulario" class="space-y-6">
+
+                <!-- INPUT -->
+                <div>
+
+                    <label class="block mb-3 text-lg">
+                        Nombre del Fan
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nombre"
+                        placeholder="Escribe tu nombre..."
+                        class="w-full p-4 rounded-2xl bg-slate-900 border border-cyan-500 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+
+                    <p
+                        id="contador"
+                        class="mt-2 text-sm text-gray-300">
+                        0/20 caracteres
+                    </p>
+
+                </div>
+
+                <!-- SELECT -->
+                <div>
+
+                    <label class="block mb-3 text-lg">
+                        Zona del Concierto
+                    </label>
+
+                    <select
+                        id="zona"
+                        class="w-full p-4 rounded-2xl bg-slate-900 border border-fuchsia-500">
+                        <option value="150">General - $150</option>
+                        <option value="350">Zona Plata - $350</option>
+                        <option value="700">Ultra VIP - $700</option>
+                    </select>
+
+                </div>
+
+                <!-- PRECIO -->
+                <div class="text-2xl font-bold text-cyan-300">
+                    Precio Total: $
+                    <span id="precio">
+                        150
+                    </span>
+
+                </div>
+
+                <!-- BOTON -->
+                <button
+                    class="bg-fuchsia-600 hover:bg-fuchsia-700 transition-all px-8 py-4 rounded-2xl text-xl font-bold neon-purple">
+                    CONFIRMAR COMPRA
+                </button>
+
+            </form>
+
+        </section>
+
+        <!-- ETAPA 2 -->
+
+        <section class="glass rounded-3xl p-8 shadow-2xl">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-8">
+                🎛️ Panel de Efectos
+            </h2>
+
+            <!-- BOTONES -->
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <button class="efecto bg-slate-900 p-6 rounded-2xl text-xl font-bold hover:bg-slate-800 transition-all border border-cyan-400">
+                    🎸 Solo de Guitarra
+                </button>
+
+                <button class="efecto bg-slate-900 p-6 rounded-2xl text-xl font-bold hover:bg-slate-800 transition-all border border-cyan-400">
+                    🥁 Drum Attack
+                </button>
+
+                <button class="efecto bg-slate-900 p-6 rounded-2xl text-xl font-bold hover:bg-slate-800 transition-all border border-cyan-400">
+                    🔊 Crowd Noise
+                </button>
+
+                <button class="efecto bg-slate-900 p-6 rounded-2xl text-xl font-bold hover:bg-slate-800 transition-all border border-cyan-400">
+                    🔥 Explosión
+                </button>
+
+            </div>
+
+            <!-- PANTALLA -->
+
+            <div class="mt-8 bg-black rounded-2xl p-6 border border-cyan-400">
+                <p
+                    id="pantalla"
+                    class="text-cyan-300 text-xl">
+                    Esperando activación...
+                </p>
+
+            </div>
+
+            <!-- RANGE -->
+
+            <div class="mt-8">
+                <label class="block mb-4 text-lg">
+                    Nivel de Energía
+                </label>
+
+                <input
+                    type="range"
+                    id="distorsion"
+                    min="0"
+                    max="100"
+                    value="40"
+                    class="w-full accent-cyan-400">
+
+                <p
+                    id="nivel"
+                    class="mt-4 text-fuchsia-300 text-xl">
+                    Nivel de Energía: 40%
+                </p>
+
+            </div>
+
+        </section>
+
+        <!-- ETAPA 3 -->
+
+        <section class="glass rounded-3xl p-8 shadow-2xl mb-16">
+            <h2 class="text-3xl font-bold text-green-400 mb-8">
+                📦 Inventario del Stage
+            </h2>
+
+            <!-- BUSCADOR -->
+
+            <input
+                type="text"
+                id="buscador"
+                placeholder="Buscar equipo..."
+                class="w-full p-4 rounded-2xl bg-slate-900 border border-green-400 mb-8">
+
+            <!-- LISTA -->
+
+            <ul class="space-y-4">
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Amplificador Orange
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Guitarra Jackson
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Batería Pearl
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Consola Yamaha
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Luces Láser
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Micrófonos Shure
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Cables HDMI
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Smoke Machine
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Pedales Wah Wah
+                </li>
+
+                <li class="equipo bg-slate-900 p-4 rounded-xl cursor-pointer border border-slate-700">
+                    Pantallas LED
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        // ETAPA 1
+
+        const nombre = document.getElementById("nombre");
+        const contador = document.getElementById("contador");
+
+        nombre.addEventListener("input", () => {
+            let cantidad = nombre.value.length;
+            contador.textContent =
+            `${cantidad}/20 caracteres`;
+
+            if(cantidad > 20){
+                contador.style.color = "#ff4d6d";
+
+            }else{
+                contador.style.color = "#d1d5db";
+            }
+
+        });
+
+        // SELECT
+
+        const zona = document.getElementById("zona");
+        const precio = document.getElementById("precio");
+
+        zona.addEventListener("change", () => {
+            precio.textContent = zona.value;
+        });
+
+        // BOTON
+
+        const formulario = document.getElementById("formulario");
+        formulario.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            if(nombre.value.trim() === ""){
+                alert("❌ Debes escribir un nombre.");
+            }else{
+                alert("✅ Ticket comprado correctamente.");
+            }
+
+        });
+
+
+        // ETAPA 2
+
+        const botones = document.querySelectorAll(".efecto");
+        const pantalla = document.getElementById("pantalla");
+
+        botones.forEach((boton) => {
+            boton.addEventListener("click", () => {
+                botones.forEach((b) => {
+                    b.classList.remove("botonActivo");
+                });
+
+                boton.classList.add("botonActivo");
+                pantalla.textContent =
+                `▶ Activando: ${boton.textContent}`;
+            });
+        });
+
+        // RANGE
+
+        const distorsion = document.getElementById("distorsion");
+        const nivel = document.getElementById("nivel");
+
+        distorsion.addEventListener("input", () => {
+            nivel.textContent =
+            `Nivel de Energía: ${distorsion.value}%`;
+        });
+
+
+        // ETAPA 3
+
+        const buscador = document.getElementById("buscador");
+        const equipos = document.querySelectorAll(".equipo");
+
+        buscador.addEventListener("input", () => {
+            const texto =
+            buscador.value.toLowerCase();
+            equipos.forEach((equipo) => {
+                const contenido =
+                equipo.textContent.toLowerCase();
+
+                if(contenido.includes(texto)){
+                    equipo.style.display = "block";
+                }else{
+                    equipo.style.display = "none";
+                }
+            });
+        });
+
+        // CLICK EN EQUIPO
+
+        equipos.forEach((equipo) => {
+
+            equipo.addEventListener("click", () => {
+                equipo.style.color = "#4ade80";
+                equipo.style.textDecoration =
+                "line-through";
+
+            });
+        });
+
+    </script>
+
+</body>
+</html>
